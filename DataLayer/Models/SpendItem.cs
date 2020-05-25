@@ -9,6 +9,9 @@ namespace DataLayer.Models
         public int SpendItemId { get; set; }
         public decimal AmountSpent { get; set; }
         public int SpendCategoryId { get; set; }
+        public SpendCategory SpendCategory { get; set; }
         public string Description { get; set; }
+        public User User { get; set; }
+        public Guid UserId { get; set; }
     }
 }

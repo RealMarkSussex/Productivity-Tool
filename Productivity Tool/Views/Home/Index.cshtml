@@ -1,10 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model IndexViewModel
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>To your financial tracker!</p>
+    <p>To your financial tracker! @Model.EmailAddress @Model.UserId</p>
 </div>
 
 <canvas id="myChart"></canvas>

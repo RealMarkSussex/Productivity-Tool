@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DataLayer.Models
+namespace Productivity_Tool.Models
 {
-    public class User
+    public class IndexViewModel
     {
         public Guid UserId { get; set; }
         public string EmailAddress { get; set; }

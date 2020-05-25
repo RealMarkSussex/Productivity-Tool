@@ -9,5 +9,6 @@ namespace DataLayer.Models
         public int LoggingId { get; set; }
         public string Message { get; set; }
         public int SeverityId { get; set; }
+        public Severity Severity { get; set; }
     }
 }
