@@ -31,8 +31,8 @@ namespace BusinessLogic
             {
                 AmountSpent = item.AmountSpent,
                 Description = item.Description,
-                UserId = item.UserId,
-                SpendCategoryId = item.SpendCategoryId
+                //UserId = item.UserId, // TODO (need to add users and spend categories to db first)
+                //SpendCategoryId = item.SpendCategoryId
             };
             _repository.Add(dataSpendItem);
         }

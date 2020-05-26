@@ -8,7 +8,6 @@ namespace DataLayer
 {
     public class SpendContext : DbContext
     {
-        // TODO update db with proper foreign keys!!!!
         public DbSet<Logging> Loggings { get; set; }
         public DbSet<Severity> Severities { get; set; }
         public DbSet<SpendCategory> SpendCategory { get; set; }
