@@ -4,11 +4,10 @@ using System.Text;
 
 namespace DataLayer.Models
 {
-    public class SpendItem
+    public class SpendItem : EntityBase
     {
-        public int SpendItemId { get; set; }
         public decimal AmountSpent { get; set; }
-        public int SpendCategoryId { get; set; }
+        public Guid SpendCategoryId { get; set; }
         public SpendCategory SpendCategory { get; set; }
         public string Description { get; set; }
         public User User { get; set; }

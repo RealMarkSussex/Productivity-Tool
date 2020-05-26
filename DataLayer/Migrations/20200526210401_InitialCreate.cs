@@ -11,57 +11,54 @@ namespace DataLayer.Migrations
                 name: "Severities",
                 columns: table => new
                 {
-                    SeverityId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Severities", x => x.SeverityId);
+                    table.PrimaryKey("PK_Severities", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "SpendCategory",
                 columns: table => new
                 {
-                    SpendCategoryId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    Id = table.Column<Guid>(nullable: false),
+                    Category = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SpendCategory", x => x.SpendCategoryId);
+                    table.PrimaryKey("PK_SpendCategory", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     EmailAddress = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Loggings",
                 columns: table => new
                 {
-                    LoggingId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     Message = table.Column<string>(nullable: true),
-                    SeverityId = table.Column<int>(nullable: false)
+                    SeverityId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Loggings", x => x.LoggingId);
+                    table.PrimaryKey("PK_Loggings", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Loggings_Severities_SeverityId",
                         column: x => x.SeverityId,
                         principalTable: "Severities",
-                        principalColumn: "SeverityId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -69,27 +66,26 @@ namespace DataLayer.Migrations
                 name: "SpendItems",
                 columns: table => new
                 {
-                    SpendItemId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     AmountSpent = table.Column<decimal>(nullable: false),
-                    SpendCategoryId = table.Column<int>(nullable: false),
+                    SpendCategoryId = table.Column<Guid>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     UserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SpendItems", x => x.SpendItemId);
+                    table.PrimaryKey("PK_SpendItems", x => x.Id);
                     table.ForeignKey(
                         name: "FK_SpendItems_SpendCategory_SpendCategoryId",
                         column: x => x.SpendCategoryId,
                         principalTable: "SpendCategory",
-                        principalColumn: "SpendCategoryId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SpendItems_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

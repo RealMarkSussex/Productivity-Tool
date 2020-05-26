@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DataLayer.Enums;
 
 namespace DataLayer.Models
 {
-    public class SpendCategory
+    public class SpendCategory : EntityBase
     {
-        public int SpendCategoryId { get; set; }
-        public string Name { get; set; }
+        public Category Category { get; set; }
     }
 }

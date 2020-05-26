@@ -4,9 +4,8 @@ using System.Text;
 
 namespace DataLayer.Models
 {
-    public class User
+    public class User : EntityBase
     {
-        public Guid UserId { get; set; }
         public string EmailAddress { get; set; }
     }
 }

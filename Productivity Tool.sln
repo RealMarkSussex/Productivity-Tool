@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Productivity Tool", "Productivity Tool\Productivity Tool.csproj", "{3902DEF0-C3F4-41AE-AE9A-05EB31C0945E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Productivity Tool\Web.csproj", "{3902DEF0-C3F4-41AE-AE9A-05EB31C0945E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{90691601-FE2B-46EA-B9A4-D7A3AC3F3FBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{90691601-FE2B-46EA-B9A4-D7A3AC3F3FBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{E83B6456-0C90-4E60-964C-7581204EB2F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{90691601-FE2B-46EA-B9A4-D7A3AC3F3FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90691601-FE2B-46EA-B9A4-D7A3AC3F3FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90691601-FE2B-46EA-B9A4-D7A3AC3F3FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E83B6456-0C90-4E60-964C-7581204EB2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E83B6456-0C90-4E60-964C-7581204EB2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E83B6456-0C90-4E60-964C-7581204EB2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E83B6456-0C90-4E60-964C-7581204EB2F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

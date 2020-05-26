@@ -21,18 +21,17 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Models.Logging", b =>
                 {
-                    b.Property<int>("LoggingId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SeverityId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("SeverityId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("LoggingId");
+                    b.HasKey("Id");
 
                     b.HasIndex("SeverityId");
 
@@ -41,40 +40,37 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Models.Severity", b =>
                 {
-                    b.Property<int>("SeverityId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SeverityId");
+                    b.HasKey("Id");
 
                     b.ToTable("Severities");
                 });
 
             modelBuilder.Entity("DataLayer.Models.SpendCategory", b =>
                 {
-                    b.Property<int>("SpendCategoryId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
 
-                    b.HasKey("SpendCategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("SpendCategory");
                 });
 
             modelBuilder.Entity("DataLayer.Models.SpendItem", b =>
                 {
-                    b.Property<int>("SpendItemId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("AmountSpent")
                         .HasColumnType("decimal(18,2)");
@@ -82,13 +78,13 @@ namespace DataLayer.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SpendCategoryId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("SpendCategoryId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("SpendItemId");
+                    b.HasKey("Id");
 
                     b.HasIndex("SpendCategoryId");
 
@@ -99,14 +95,14 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Models.User", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
                 });

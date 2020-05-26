@@ -16,23 +16,15 @@ namespace Productivity_Tool.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _context = context;
         }
 
         public IActionResult Index()
         {
-            var user = new IndexViewModel()
-            {
-                EmailAddress = this.User.Identity.Name,
-                UserId = Guid.NewGuid()
-            };
-
-            return View(user);
+            return View();
         }
 
         public IActionResult Privacy()
