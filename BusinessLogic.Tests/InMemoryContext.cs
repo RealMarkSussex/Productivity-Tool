@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
-namespace BusinessLogic.Tests.Fakes
+namespace BusinessLogic.Tests
 {
     public class InMemoryContext : DbContext
     {
@@ -14,6 +15,6 @@ namespace BusinessLogic.Tests.Fakes
         public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseInMemoryDatabase("SpendInMemoryDatabase");
+            => options.UseInMemoryDatabase("SpendInMemoryDatabase:" + Guid.NewGuid());
     }
 }
