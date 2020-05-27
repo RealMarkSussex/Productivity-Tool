@@ -15,10 +15,10 @@ namespace BusinessLogic
         private readonly IRepository<DataLayer.Models.SpendItem> _spendItemRepository;
         private readonly IRepository<DataLayer.Models.User> _userRepository;
 
-        public SpendItemService()
+        public SpendItemService(Repository<DataLayer.Models.SpendItem> spendItemRepository, Repository<User> userRepository)
         {
-            _spendItemRepository = new Repository<DataLayer.Models.SpendItem>();
-            _userRepository = new Repository<User>();
+            _spendItemRepository = spendItemRepository;
+            _userRepository = userRepository;
         }
 
         public void Add(SpendItem item)

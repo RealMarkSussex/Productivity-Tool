@@ -12,9 +12,9 @@ namespace BusinessLogic
     public class UserService : IService<User>
     {
         private readonly IRepository<DataLayer.Models.User> _userRepository;
-        public UserService()
+        public UserService(IRepository<DataLayer.Models.User> userRepository)
         {
-            _userRepository = new Repository<DataLayer.Models.User>();
+            _userRepository = userRepository;
         }
         public void Add(User item)
         {
