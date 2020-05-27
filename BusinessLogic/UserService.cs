@@ -5,7 +5,6 @@ using BusinessLogic.Interfaces;
 using BusinessLogic.Models;
 using DataLayer;
 using DataLayer.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace BusinessLogic
 {
