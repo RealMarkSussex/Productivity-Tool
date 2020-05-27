@@ -50,5 +50,36 @@ namespace BusinessLogic.Tests
             Assert.AreEqual(user.Id, spendItem.UserId);
             Assert.IsNotNull(spendItem.Id);
         }
+
+        [TestMethod]
+        public void GivenManySpendItems_WhenICallSumCategorySpendAmounts_ThenIGetSpendTotalPerCategory()
+        {
+            var email = "marksussex6@gmail.com";
+
+            _userRepository.Add(new User()
+            {
+                EmailAddress = email
+            });
+
+            _sut.Add(new Models.SpendItem()
+            {
+                AmountSpent = (decimal) 3,
+                Category = Category.Snacks,
+                Description = "Drumstick choose",
+                EmailAddress = email
+            });
+
+            _sut.Add(new Models.SpendItem()
+            {
+                AmountSpent = (decimal) 5,
+                Category = Category.Snacks,
+                EmailAddress = email
+            });
+
+            var sumCategoryAmounts = _sut.SumCategorySpendAmounts(email);
+            Assert.AreEqual((decimal) 8, sumCategoryAmounts.First(sca => sca.Category == Category.Snacks).TotalAmount);
+
+            Assert.AreEqual((decimal) 0, sumCategoryAmounts.First(sca => sca.Category == Category.Gaming).TotalAmount);
+        }
     }
 }

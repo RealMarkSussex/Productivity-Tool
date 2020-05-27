@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Models;
 using DataLayer;
 using DataLayer.Interfaces;
-using DataLayer.Models;
+using Shared.Enums;
 using SpendItem = BusinessLogic.Models.SpendItem;
+using User = DataLayer.Models.User;
 
 namespace BusinessLogic
 {
@@ -32,6 +34,22 @@ namespace BusinessLogic
                 Category = item.Category
             };
             _spendItemRepository.Add(dataSpendItem);
+        }
+
+        public List<SumCategoryAmount> SumCategorySpendAmounts(string email)
+        {
+            var categories = Enum.GetValues(typeof(Category));
+            var totalSpendAmounts = new List<SumCategoryAmount>();
+            foreach (var category in categories)
+            {
+                totalSpendAmounts
+                    .Add(new SumCategoryAmount()
+                    {
+                        Category = (Category) category,
+                        TotalAmount = _spendItemRepository.List(si => si.Category == (Category)category).Sum(si => si.AmountSpent)
+                    });
+            }
+            return totalSpendAmounts;
         }
     }
 }
