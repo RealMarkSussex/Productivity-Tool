@@ -15,7 +15,7 @@ namespace Productivity_Tool.Controllers
     {
         private readonly IHtmlHelper _htmlHelper;
         private readonly SpendItemService _spendItemService;
-        private SpendItemViewModel _viewModel;
+        private readonly SpendItemViewModel _viewModel;
         public SpendItemsController(IHtmlHelper htmlHelper, SpendItemService spendItemService)
         {
             _htmlHelper = htmlHelper;
@@ -32,7 +32,6 @@ namespace Productivity_Tool.Controllers
         [HttpPost]
         public IActionResult Add(SpendItemViewModel viewModel)
         {
-            var lol = this.User.Identity.Name;
             _spendItemService.Add(new SpendItem()
             {
                 AmountSpent = viewModel.AmountSpent,
