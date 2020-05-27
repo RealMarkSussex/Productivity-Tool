@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataLayer.Enums;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Shared.Enums;
 
 namespace Productivity_Tool.Models
 {

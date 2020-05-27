@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using BusinessLogic.Interfaces;
-using BusinessLogic.Models;
 using DataLayer;
 using DataLayer.Interfaces;
+using DataLayer.Models;
+using SpendItem = BusinessLogic.Models.SpendItem;
 
 namespace BusinessLogic
 {
     public class SpendItemService : ISpendItemService
     {
-        private readonly IRepository<DataLayer.Models.SpendItem> _repository;
+        private readonly IRepository<DataLayer.Models.SpendItem> _spendItemRepository;
+        private readonly IRepository<DataLayer.Models.User> _userRepository;
+
         public SpendItemService()
         {
-            _repository = new Repository<DataLayer.Models.SpendItem>();
+            _spendItemRepository = new Repository<DataLayer.Models.SpendItem>();
+            _userRepository = new Repository<User>();
         }
         public IEnumerable<SpendItem> GetSpendItems()
         {
@@ -27,14 +32,15 @@ namespace BusinessLogic
 
         public void AddSpendItem(SpendItem item)
         {
+            var userId = _userRepository.List(u => u.EmailAddress == item.EmailAddress).First().Id;
             var dataSpendItem = new DataLayer.Models.SpendItem()
             {
                 AmountSpent = item.AmountSpent,
                 Description = item.Description,
-                //UserId = item.UserId, // TODO (need to add users and spend categories to db first)
-                //SpendCategoryId = item.SpendCategoryId
+                UserId = userId,
+                Category = item.Category
             };
-            _repository.Add(dataSpendItem);
+            _spendItemRepository.Add(dataSpendItem);
         }
 
         public bool TryUpdate(SpendItem item)

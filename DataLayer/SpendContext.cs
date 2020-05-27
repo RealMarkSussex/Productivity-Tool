@@ -10,7 +10,6 @@ namespace DataLayer
     {
         public DbSet<Logging> Loggings { get; set; }
         public DbSet<Severity> Severities { get; set; }
-        public DbSet<SpendCategory> SpendCategory { get; set; }
         public DbSet<SpendItem> SpendItems { get; set; }
         public DbSet<User> Users { get; set; }
 

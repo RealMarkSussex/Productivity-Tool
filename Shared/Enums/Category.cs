@@ -1,4 +1,4 @@
-﻿namespace Productivity_Tool.Enums
+﻿namespace Shared.Enums
 {
     public enum Category
     {

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Productivity_Tool.Enums;
 using Productivity_Tool.Models;
+using Shared.Enums;
 
 namespace Productivity_Tool.Controllers
 {

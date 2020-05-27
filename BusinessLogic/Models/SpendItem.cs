@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DataLayer.Enums;
 using DataLayer.Models;
+using Shared.Enums;
 
 namespace BusinessLogic.Models
 {
