@@ -10,7 +10,7 @@ using SpendItem = BusinessLogic.Models.SpendItem;
 
 namespace BusinessLogic
 {
-    public class SpendItemService : ISpendItemService
+    public class SpendItemService : IService<SpendItem>
     {
         private readonly IRepository<DataLayer.Models.SpendItem> _spendItemRepository;
         private readonly IRepository<DataLayer.Models.User> _userRepository;
@@ -20,17 +20,8 @@ namespace BusinessLogic
             _spendItemRepository = new Repository<DataLayer.Models.SpendItem>();
             _userRepository = new Repository<User>();
         }
-        public IEnumerable<SpendItem> GetSpendItems()
-        {
-            throw new NotImplementedException();
-        }
 
-        public SpendItem GetSpendItem(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddSpendItem(SpendItem item)
+        public void Add(SpendItem item)
         {
             var userId = _userRepository.List(u => u.EmailAddress == item.EmailAddress).First().Id;
             var dataSpendItem = new DataLayer.Models.SpendItem()
@@ -41,16 +32,6 @@ namespace BusinessLogic
                 Category = item.Category
             };
             _spendItemRepository.Add(dataSpendItem);
-        }
-
-        public bool TryUpdate(SpendItem item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryDelete(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

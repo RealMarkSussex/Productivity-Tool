@@ -2,14 +2,19 @@
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Threading.Tasks;
+using BusinessLogic;
+using BusinessLogic.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Productivity_Tool.Services
 {
     public class EmailSender : IEmailSender
     {
-        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
+        private readonly UserService _userService;
+
+        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor, UserService userService)
         {
+            _userService = userService;
             Options = optionsAccessor.Value;
         }
 
@@ -22,6 +27,10 @@ namespace Productivity_Tool.Services
 
         public Task Execute(string apiKey, string subject, string message, string email)
         {
+            _userService.Add(new User()
+            {
+                EmailAddress = email
+            }); // This is a bad solution but currently do not know how else to do this
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {

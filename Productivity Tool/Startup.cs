@@ -1,3 +1,5 @@
+using BusinessLogic;
+using BusinessLogic.Interfaces;
 using Productivity_Tool.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +35,10 @@ namespace Productivity_Tool
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
             services.AddRazorPages();
+
+            services.AddSingleton<SpendItemService>();
+            services.AddSingleton<UserService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
