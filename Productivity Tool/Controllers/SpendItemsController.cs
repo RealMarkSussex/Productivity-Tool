@@ -44,5 +44,16 @@ namespace Productivity_Tool.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPut]
+        public IActionResult Edit([FromBody] SpendItemViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

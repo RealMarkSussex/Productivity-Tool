@@ -71,7 +71,8 @@ namespace BusinessLogic
                         AmountSpent = spendItem.AmountSpent, 
                         Category = spendItem.Category, 
                         Description = spendItem.Description,
-                        Date = spendItem.Date
+                        Date = spendItem.Date,
+                        SpendItemId = spendItem.Id
                     }).ToList();
         }
     }

@@ -1,0 +1,33 @@
+﻿@model Productivity_Tool.Models.SpendHistoryViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>View Spend History</h1>
+
+<p>
+    <a asp-action="Add" asp-controller="SpendItems">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SpendItems)
+        {
+            <tr>
+                <td>@item.Description</td>
+                <td>@item.Category</td>
+                <td>@item.AmountSpent</td>
+                <td>@item.Date</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "SpendItems", item) |
+                    @Html.ActionLink("Delete", "Delete", "SpendItems", new {id = item.SpendItemId})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

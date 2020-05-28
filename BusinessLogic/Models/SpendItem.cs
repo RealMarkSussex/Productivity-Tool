@@ -13,5 +13,6 @@ namespace BusinessLogic.Models
         public string Description { get; set; }
         public string EmailAddress { get; set; }
         public DateTime Date { get; set; }
+        public Guid SpendItemId { get; set; }
     }
 }
