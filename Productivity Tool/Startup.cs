@@ -1,6 +1,7 @@
 using BusinessLogic;
 using BusinessLogic.Interfaces;
 using DataLayer;
+using DataLayer.Interfaces;
 using DataLayer.Models;
 using Productivity_Tool.Data;
 using Microsoft.AspNetCore.Builder;
@@ -38,11 +39,11 @@ namespace Productivity_Tool
             services.Configure<AuthMessageSenderOptions>(Configuration);
             services.AddRazorPages();
 
-            services.AddSingleton<Repository<User>>();
-            services.AddSingleton<Repository<SpendItem>>();
+            services.AddScoped<IRepository<User>, Repository<User>>();
+            services.AddScoped<IRepository<SpendItem>, Repository<SpendItem>>();
 
-            services.AddSingleton<SpendItemService>();
-            services.AddSingleton<UserService>();
+            services.AddScoped<SpendItemService>();
+            services.AddScoped<UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

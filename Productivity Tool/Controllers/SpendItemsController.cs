@@ -25,6 +25,7 @@ namespace Productivity_Tool.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            _viewModel.Date = DateTime.Now;
             _viewModel.Categories = _htmlHelper.GetEnumSelectList<Category>();
             return View(_viewModel);
         }
@@ -37,7 +38,8 @@ namespace Productivity_Tool.Controllers
                 AmountSpent = viewModel.AmountSpent,
                 Category = viewModel.Category,
                 Description = viewModel.Description,
-                EmailAddress = User.Identity.Name
+                EmailAddress = User.Identity.Name,
+                Date = viewModel.Date
             });
             return RedirectToAction("Index");
         }

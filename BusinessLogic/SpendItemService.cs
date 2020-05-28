@@ -34,7 +34,8 @@ namespace BusinessLogic
                 AmountSpent = item.AmountSpent,
                 Description = item.Description,
                 UserId = userId,
-                Category = item.Category
+                Category = item.Category,
+                Date = item.Date
             };
             _spendItemRepository.Add(dataSpendItem);
         }
@@ -69,7 +70,8 @@ namespace BusinessLogic
                     {
                         AmountSpent = spendItem.AmountSpent, 
                         Category = spendItem.Category, 
-                        Description = spendItem.Description
+                        Description = spendItem.Description,
+                        Date = spendItem.Date
                     }).ToList();
         }
     }
