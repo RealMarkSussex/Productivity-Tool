@@ -21,7 +21,7 @@ namespace BusinessLogic.Tests
         [TestMethod]
         public void GivenIAddAUser_WhenICallAdd_ThenTheUserIsInTheDatabase()
         {
-            var email = "marksussex6@gmail.com";
+            const string email = "marksussex6@gmail.com";
 
             _sut.Add(new Models.User()
             {
