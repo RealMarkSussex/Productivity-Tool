@@ -30,9 +30,11 @@ namespace Productivity_Tool.Controllers
             return View(viewModel);
         }
 
-        public IActionResult Edit()
+        public IActionResult Edit(SpendItemViewModel viewModel)
         {
-            return null;
+            viewModel.SpendItem.EmailAddress = User.Identity.Name;
+            _spendItemService.Update(viewModel.SpendItem);
+            return RedirectToAction("Index", "SpendHistory");
         }
     }
 }

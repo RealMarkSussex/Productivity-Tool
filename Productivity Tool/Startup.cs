@@ -1,5 +1,7 @@
 using BusinessLogic;
+using BusinessLogic.Helpers;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Mappers;
 using DataLayer;
 using DataLayer.Interfaces;
 using DataLayer.Models;
@@ -44,6 +46,8 @@ namespace Productivity_Tool
 
             services.AddScoped<SpendItemService>();
             services.AddScoped<UserService>();
+            services.AddScoped<SpendItemMapper>();
+            services.AddScoped<EmailHelper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

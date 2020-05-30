@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using BusinessLogic.Helpers;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Mappers;
 using BusinessLogic.Models;
 using DataLayer;
 using DataLayer.Interfaces;
@@ -17,27 +18,20 @@ namespace BusinessLogic
     {
         private readonly IRepository<DataLayer.Models.SpendItem> _spendItemRepository;
         private readonly IRepository<DataLayer.Models.User> _userRepository;
+        private readonly SpendItemMapper _spendItemMapper;
         private readonly EmailHelper _emailHelper;
 
-        public SpendItemService(IRepository<DataLayer.Models.SpendItem> spendItemRepository, IRepository<User> userRepository)
+        public SpendItemService(IRepository<DataLayer.Models.SpendItem> spendItemRepository, IRepository<User> userRepository, SpendItemMapper spendItemMapper, EmailHelper emailHelper)
         {
             _spendItemRepository = spendItemRepository;
             _userRepository = userRepository;
-            _emailHelper = new EmailHelper(_userRepository);
+            _spendItemMapper = spendItemMapper;
+            _emailHelper = emailHelper;
         }
 
-        public void Add(SpendItem item)
+        public void Add(SpendItem spendItem)
         {
-            var userId = _emailHelper.GetUserId(item.EmailAddress);
-            var dataSpendItem = new DataLayer.Models.SpendItem()
-            {
-                AmountSpent = item.AmountSpent,
-                Description = item.Description,
-                UserId = userId,
-                Category = item.Category,
-                Date = item.Date
-            };
-            _spendItemRepository.Add(dataSpendItem);
+            _spendItemRepository.Add(_spendItemMapper.MapSpendItem(spendItem));
         }
 
         public List<SumCategoryAmount> SumCategorySpendAmounts(string email)
@@ -66,26 +60,24 @@ namespace BusinessLogic
 
             return spendItems
                 .Select(spendItem => 
-                    new SpendItem()
-                    {
-                        AmountSpent = spendItem.AmountSpent, 
-                        Category = spendItem.Category, 
-                        Description = spendItem.Description,
-                        Date = spendItem.Date,
-                        SpendItemId = spendItem.Id
-                    }).ToList();
+                    _spendItemMapper.MapSpendItem(spendItem))
+                .ToList();
         }
 
         public SpendItem GetSpendItem(Guid id)
         {
             var spendItem = _spendItemRepository.GetById(id);
-            return new SpendItem()
-            {
-                AmountSpent = spendItem.AmountSpent,
-                Category = spendItem.Category,
-                Date = spendItem.Date,
-                Description = spendItem.Description
-            };
+            return _spendItemMapper.MapSpendItem(spendItem);
+        }
+
+        public void Update(SpendItem spendItem)
+        {
+            _spendItemRepository.Edit(_spendItemMapper.MapSpendItem(spendItem));
+        }
+
+        public void Delete(Guid id)
+        {
+            _spendItemRepository.Delete(_spendItemRepository.GetById(id));
         }
     }
 }

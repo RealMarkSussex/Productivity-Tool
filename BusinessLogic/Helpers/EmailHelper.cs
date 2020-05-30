@@ -18,6 +18,10 @@ namespace BusinessLogic.Helpers
 
         public Guid GetUserId(string email)
         {
+            if (email == null)
+            {
+                return Guid.Empty;
+            }
             return _userRepository.List(u => u.EmailAddress == email).First().Id;
         }
     }

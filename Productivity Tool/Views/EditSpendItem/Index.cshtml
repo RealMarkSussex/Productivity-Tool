@@ -12,9 +12,10 @@
     <div class="col-md-4">
         <form asp-action="Edit" asp-controller="EditSpendItem">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SpendItem.SpendItemId"/>
             <div class="form-group">
                 <label asp-for="SpendItem.AmountSpent" class="control-label"></label>
-                <input asp-for="SpendItem.AmountSpent" class="form-control" />
+                <input asp-for="SpendItem.AmountSpent" class="form-control"/>
                 <span asp-validation-for="SpendItem.AmountSpent" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -26,23 +27,23 @@
             </div>
             <div class="form-group">
                 <label asp-for="SpendItem.Description" class="control-label"></label>
-                <input asp-for="SpendItem.Description" class="form-control" />
+                <input asp-for="SpendItem.Description" class="form-control"/>
                 <span asp-validation-for="SpendItem.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SpendItem.Date" class="control-label"></label>
-                <input asp-for="SpendItem.Date" class="form-control" />
+                <input asp-for="SpendItem.Date" class="form-control"/>
                 <span asp-validation-for="SpendItem.Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary"/>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-controller="SpendHistory">Back to List</a>
 </div>
 
 @section Scripts {

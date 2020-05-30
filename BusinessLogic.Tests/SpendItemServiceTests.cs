@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using BusinessLogic.Helpers;
+using BusinessLogic.Mappers;
 using BusinessLogic.Tests.Fakes;
 using DataLayer.Interfaces;
 using DataLayer.Models;
@@ -22,7 +23,7 @@ namespace BusinessLogic.Tests
         {
             _spendItemRepository = new FakeRepository<SpendItem>();
             _userRepository = new FakeRepository<User>();
-            _sut = new SpendItemService(_spendItemRepository, _userRepository);
+            _sut = new SpendItemService(_spendItemRepository, _userRepository, new SpendItemMapper(new EmailHelper(_userRepository)), new EmailHelper(_userRepository));
             _emailHelper = new EmailHelper(_userRepository);
             _userRepository.Add(new User()
             {
