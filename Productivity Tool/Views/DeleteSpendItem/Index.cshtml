@@ -37,7 +37,7 @@
         </dd>
     </dl>
 
-    <form asp-action="Delete" asp-controller="DeleteSpendItem">
+    <form asp-action="Delete" asp-controller="DeleteSpendItem" method="post">
         <input type="hidden" asp-for="SpendItemId"/>
         <input type="submit" value="Delete" class="btn btn-danger"/> |
         <a asp-action="Index" asp-controller="SpendHistory">Back to List</a>

@@ -30,6 +30,7 @@ namespace Productivity_Tool.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
         public IActionResult Edit(SpendItemViewModel viewModel)
         {
             viewModel.SpendItem.EmailAddress = User.Identity.Name;

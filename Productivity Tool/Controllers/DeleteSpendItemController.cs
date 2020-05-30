@@ -23,6 +23,7 @@ namespace Productivity_Tool.Controllers
             return View(_spendItemService.GetSpendItem(id));
         }
 
+        [HttpPost]
         public IActionResult Delete(SpendItem viewModel)
         {
             _spendItemService.Delete(viewModel.SpendItemId);
