@@ -75,5 +75,17 @@ namespace BusinessLogic
                         SpendItemId = spendItem.Id
                     }).ToList();
         }
+
+        public SpendItem GetSpendItem(Guid id)
+        {
+            var spendItem = _spendItemRepository.GetById(id);
+            return new SpendItem()
+            {
+                AmountSpent = spendItem.AmountSpent,
+                Category = spendItem.Category,
+                Date = spendItem.Date,
+                Description = spendItem.Description
+            };
+        }
     }
 }

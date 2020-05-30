@@ -11,12 +11,12 @@ using Shared.Enums;
 
 namespace Productivity_Tool.Controllers
 {
-    public class SpendItemsController : Controller
+    public class AddSpendItemController : Controller
     {
         private readonly IHtmlHelper _htmlHelper;
         private readonly SpendItemService _spendItemService;
         private readonly SpendItemViewModel _viewModel;
-        public SpendItemsController(IHtmlHelper htmlHelper, SpendItemService spendItemService)
+        public AddSpendItemController(IHtmlHelper htmlHelper, SpendItemService spendItemService)
         {
             _htmlHelper = htmlHelper;
             _spendItemService = spendItemService;
@@ -25,7 +25,10 @@ namespace Productivity_Tool.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            _viewModel.Date = DateTime.Now;
+            _viewModel.SpendItem = new SpendItem()
+            {
+                Date = DateTime.Now
+            };
             _viewModel.Categories = _htmlHelper.GetEnumSelectList<Category>();
             return View(_viewModel);
         }
@@ -35,11 +38,11 @@ namespace Productivity_Tool.Controllers
         {
             _spendItemService.Add(new SpendItem()
             {
-                AmountSpent = viewModel.AmountSpent,
-                Category = viewModel.Category,
-                Description = viewModel.Description,
+                AmountSpent = viewModel.SpendItem.AmountSpent,
+                Category = viewModel.SpendItem.Category,
+                Description = viewModel.SpendItem.Description,
                 EmailAddress = User.Identity.Name,
-                Date = viewModel.Date
+                Date = viewModel.SpendItem.Date
             });
             return RedirectToAction("Index");
         }
