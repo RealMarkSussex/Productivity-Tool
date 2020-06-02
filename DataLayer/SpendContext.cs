@@ -12,8 +12,8 @@ namespace DataLayer
         public DbSet<Severity> Severities { get; set; }
         public DbSet<SpendItem> SpendItems { get; set; }
         public DbSet<User> Users { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Spend;Trusted_Connection=True;");
+        public SpendContext(DbContextOptions<SpendContext> options)
+            : base(options)
+        { }
     }
 }

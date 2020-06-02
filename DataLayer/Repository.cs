@@ -10,9 +10,9 @@ namespace DataLayer
     {
         private readonly SpendContext _dbContext;
 
-        public Repository()
+        public Repository(SpendContext context)
         {
-            _dbContext = new SpendContext();
+            _dbContext = context;
         }
 
         public virtual T GetById(Guid id)
