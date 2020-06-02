@@ -31,18 +31,13 @@ namespace Productivity_Tool
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString(Configuration["ConnectionStrings:DefaultConnection"])));
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                   Environment.GetEnvironmentVariable("Spend") ?? Configuration.GetConnectionString("DefaultConnection")));
+                   Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<SpendContext>(options =>
                 options.UseSqlServer(
-                    Environment.GetEnvironmentVariable("DefaultConnection") ?? Configuration.GetConnectionString("Spend")));
+                     Configuration.GetConnectionString("Spend")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
