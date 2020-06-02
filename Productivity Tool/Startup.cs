@@ -1,3 +1,4 @@
+using System;
 using BusinessLogic;
 using BusinessLogic.Helpers;
 using BusinessLogic.Interfaces;
@@ -31,13 +32,17 @@ namespace Productivity_Tool
         public void ConfigureServices(IServiceCollection services)
         {
 
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString(Configuration["ConnectionStrings:DefaultConnection"])));
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                   Environment.GetEnvironmentVariable("Spend") ?? Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<SpendContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("Spend")));
+                    Environment.GetEnvironmentVariable("DefaultConnection") ?? Configuration.GetConnectionString("Spend")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

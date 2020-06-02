@@ -45,8 +45,7 @@ namespace BusinessLogic
                     {
                         Category = (Category) category,
                         TotalAmount = _spendItemRepository
-                            .List(si => si.Category == (Category)category)
-                            .Where(si => si.UserId == _emailHelper.GetUserId(email))
+                            .List(si => si.Category == (Category)category && si.UserId == _emailHelper.GetUserId(email))
                             .Sum(si => si.AmountSpent)
                     });
             }
