@@ -27,6 +27,10 @@ namespace Productivity_Tool.Services
 
         public Task Execute(string apiKey, string subject, string message, string email)
         {
+            if (apiKey == null)
+            {
+                return Task.CompletedTask;
+            }
             _userService.Add(new User()
             {
                 EmailAddress = email

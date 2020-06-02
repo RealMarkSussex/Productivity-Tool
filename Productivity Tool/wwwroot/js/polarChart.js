@@ -1,4 +1,4 @@
-﻿fetch("https://localhost:44385/api/SumCategoryAmount")
+﻿fetch("https://markfinance.azurewebsites.net/api/SumCategoryAmount")
     .then(res => res.json())
     .then(result => {
         let sumCategoryAmounts = result;
