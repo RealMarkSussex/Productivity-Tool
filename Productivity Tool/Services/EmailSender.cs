@@ -5,16 +5,19 @@ using System.Threading.Tasks;
 using BusinessLogic;
 using BusinessLogic.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Configuration;
 
 namespace Productivity_Tool.Services
 {
     public class EmailSender : IEmailSender
     {
         private readonly UserService _userService;
+        private readonly IConfiguration _config;
 
-        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor, UserService userService)
+        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor, UserService userService, IConfiguration config)
         {
             _userService = userService;
+            _config = config;
             Options = optionsAccessor.Value;
         }
 
@@ -22,15 +25,11 @@ namespace Productivity_Tool.Services
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            return Execute(Options.SendGridKey, subject, message, email);
+            return Execute(_config["apiKey"], subject, message, email);
         }
 
         public Task Execute(string apiKey, string subject, string message, string email)
         {
-            if (apiKey == null)
-            {
-                return Task.CompletedTask;
-            }
             _userService.Add(new User()
             {
                 EmailAddress = email
@@ -38,7 +37,7 @@ namespace Productivity_Tool.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("marksussex6@gmail.com", Options.SendGridUser),
+                From = new EmailAddress("marksussex6@gmail.com", "ProductivityTool"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
