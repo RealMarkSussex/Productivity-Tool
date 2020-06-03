@@ -1,13 +1,21 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@{
     ViewData["Title"] = "Home Page";
 }
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
+<h1 class="display-4">Welcome</h1>
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Absolute tosh!</p>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <canvas id="myChart"></canvas>
+    }
+    else
+    {
+        <p>Sign in to use the best financial tracker ever!</p>
+    }
 </div>
 
-<canvas id="myChart"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-
 <script src="js/polarChart.js"></script>
