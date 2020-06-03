@@ -66,7 +66,7 @@ namespace BusinessLogic.Tests
         {
             _spendItemRepository.Add(new SpendItem()
             {
-                AmountSpent = 1,
+                AmountSpent = 3,
                 Category = Category.Snacks,
                 Description = "Drumstick choose",
                 UserId = _emailHelper.GetUserId(MarkEmail)
