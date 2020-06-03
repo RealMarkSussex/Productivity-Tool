@@ -66,7 +66,7 @@ namespace BusinessLogic.Tests
         {
             _spendItemRepository.Add(new SpendItem()
             {
-                AmountSpent = 3,
+                AmountSpent = 4,
                 Category = Category.Snacks,
                 Description = "Drumstick choose",
                 UserId = _emailHelper.GetUserId(MarkEmail)
@@ -80,7 +80,7 @@ namespace BusinessLogic.Tests
             });
 
             var sumCategoryAmounts = _sut.SumCategorySpendAmounts(MarkEmail);
-            Assert.AreEqual( (decimal) 3, sumCategoryAmounts.First(sca => sca.Category == Category.Snacks).TotalAmount);
+            Assert.AreEqual( (decimal) 4, sumCategoryAmounts.First(sca => sca.Category == Category.Snacks).TotalAmount);
             Assert.AreEqual( 0, sumCategoryAmounts.First(sca => sca.Category == Category.Gaming).TotalAmount);
         }
 
